@@ -1,68 +1,99 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Cornershop Frontend Test
 
-## Available Scripts
+## Before you begin
+You will need to create a repository using the READ ME that we provided. After this, upload it to Github, and invite 
+@RoHerrera and @varellanov as collaborators. 
 
-In the project directory, you can run:
+## The Test
+You need to create a simple counter application that can do the following:
+* Add a named counter to a list of counters
+* Increment any of the counters
+* Decrement any of the counters
+* Delete a counter
+* Show a sum of all the counter values
+* Implement sorting counters by title and by amount
+* It must persist data back to the server (using the API we're providing you)
+* A text based searchbar
+* A section where we can filter counters by the following rules:
+  * Less than a given value that we can change (let's say in an input)
+  * Greater than a given value that we can change (let's say in an input as well)
+* We must be able to toggle the filters in the UI
 
-### `yarn start`
+Some other notes:
+* The design, layout and UX is all up to you. We´re looking for good concern for the UI/UX of the app.
+* You must use React.
+  * Using CLI tools to bootstrap your project (like Create React App) is recommended so you don't waste time setting up a build system.
+  * If you decide to use a precompiler of any kind (js/css/etc..) we need to be able to run it with `npm run build`.
+* You must include tests. You can use any tool you like. 
+* Good management of state throught out the app using built-in solutions or third party dependencies (`redux`, `mobx`, `ngrx`, `vuex` or whatever).
+* You can change anything you want (server stuff included) as long as the list above is completed.
+* __This isn't a backend test, don't make it require any databases__.
+* Your project must be self-contained, hence we don't want to run any `npm install -g whatever` commands. **NO GLOBAL DEPENDENCIES**
+* Please consider that we expect your solution to be production-ready. In other words, that millions of users would be thrilled to use your product.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Extra points:
+* Tests are good.
+* Good practices in version control.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+We have provided:
+* Compiled Directory: of `/static/`.
+* `/static/index.html` that will be served at `localhost:3000` when the server is running.
+* `/static/app.js` and `/static/app.css` will be used automatically by `/static/index.html`.
 
-### `yarn test`
+> If you need other publicly available files, other than `index.html`, `app.js`, `app.css` you will have to modify the server code in `/index.js`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Install and start the server
 
-### `yarn build`
+```
+$ npm install
+$ npm start
+$ npm run build #[optional] use for any precompilers you choose
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## API endpoints / examples
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+> The following endpoints are expecting a `Content-Type: application/json`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+GET /api/v1/counters
+# []
 
-### `yarn eject`
+POST {title: "bob"} /api/v1/counter
+# [
+#   {id: "asdf", title: "bob", count: 0}
+# ]
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+POST {title: "steve"} /api/v1/counter
+# [
+#   {id: "asdf", title: "bob", count: 0},
+#   {id: "qwer", title: "steve", count: 0}
+# ]
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+POST {id: "asdf"} /api/v1/counter/inc
+# [
+#   {id: "asdf", title: "bob", count: 1},
+#   {id: "qwer", title: "steve", count: 0}
+# ]
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+POST {id: "qwer"} /api/v1/counter/dec
+# [
+#   {id: "asdf", title: "bob", count: 1},
+#   {id: "qwer", title: "steve", count: -1}
+# ]
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+DELETE {id: "qwer"} /api/v1/counter
+# [
+#   {id: "asdf", title: "bob", count: 1}
+# ]
 
-## Learn More
+GET /api/v1/counters
+# [
+#   {id: "asdf", title: "bob", count: 1},
+# ]
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+> **NOTE:* Each request returns the current state of all counters.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This must be our face after reviewing your submission (hopefully, for good).
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+![Pika Pika](https://as01.epimg.net/epik/imagenes/2018/11/16/portada/1542384053_864693_1542384302_noticia_normal.jpg)
