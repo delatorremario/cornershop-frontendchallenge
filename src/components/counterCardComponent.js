@@ -1,10 +1,10 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faMinus, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const CounterCardComponent = ({ name, count }) => (
-  <Card style={{ width: "18rem" }}>
+  <Card className="counter-card" style={{ width: "18rem" }}>
     <Card.Body>
       <Card.Title>{name}</Card.Title>
       <Card.Text>{count}</Card.Text>
@@ -15,6 +15,11 @@ const CounterCardComponent = ({ name, count }) => (
         {"  "}
         <button type="button" className="btn btn-danger btn-circle">
           <FontAwesomeIcon icon={faMinus} />
+        </button>
+      </div>
+      <div>
+        <button type="button" className="btn btn-default btn-circle">
+          <FontAwesomeIcon icon={faTrash} />
         </button>
       </div>
     </Card.Body>

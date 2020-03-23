@@ -1,19 +1,68 @@
 .App {
-  text-align: center;
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
+  /* justify-content: center; */
   font-size: calc(10px + 2vmin);
+  background-color: #282c34;
 }
 
-.counter-buttons{
+.header-app {
+  top: 0;
+  position: fixed;
+  width: 100%;
+
+  -webkit-z-index: 1;
+  -moz-z-index: 1;
+  -ms-z-index: 1;
+  -o-z-index: 1;
+  z-index: 1;
+}
+.sorters {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: space-around;
+  background-color: white;
+  height: 50px;
+  border-bottom: solid black 1px;
+
+}
+
+.sorter-item {
+  padding: 5px;
+}
+
+.counter {
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+  font-size: xx-large;
+}
+
+.addcounter-form {
+  background-color: white;
+  border-bottom: solid black 1px;
+}
+
+.counter-form {
+  width: 50%;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.counters-list {
+  top: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* width: 80%; */
+  margin-top: 50px;
+}
+.counter-card {
+  text-align: center;
+  margin: 10px;
 }
 
 .btn-circle.btn-xl {
@@ -34,3 +83,25 @@
   font-size: 12px;
   line-height: 1.42857;
 }
+
+.label {
+  color: white;
+  padding: 8px;
+}
+
+.success {
+  background-color: #4caf50;
+} /* Green */
+.info {
+  background-color: #2196f3;
+} /* Blue */
+.warning {
+  background-color: #ff9800;
+} /* Orange */
+.danger {
+  background-color: #f44336;
+} /* Red */
+.other {
+  background-color: #e7e7e7;
+  color: black;
+} /* Gray */
