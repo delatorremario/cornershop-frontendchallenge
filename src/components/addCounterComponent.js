@@ -11,10 +11,7 @@ class AddCounterComponent extends React.Component {
   }
 
   render() {
-    console.log(
-      "AddCounterComponent -> handleSubmit -> this.props",
-      this.props
-    );
+  
     const { saveCounter, setShowAddCounter } = this.props;
 
     return (

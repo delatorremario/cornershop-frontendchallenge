@@ -13,24 +13,8 @@ import AddCounterComponent from "./addCounterComponent";
 
 class HeaderAppComponent extends React.Component {
   state = {
-    showAddCounter: false,
-    upSortDirection: true,
-    sortBy: "counter"
+    showAddCounter: false
   };
-
-  setSorter = e => {
-    e.preventDefault();
-    const { sortBy } = this.state;
-
-    if (sortBy !== e.target.name) {
-      this.setState({ sortBy: e.target.name, upSortDirection: true });
-    } else {
-      this.setState(prevState => ({
-        upSortDirection: !prevState.upSortDirection
-      }));
-    }
-  };
-
   setShowAddCounter = e => {
     e.preventDefault();
     this.setState(prevState => ({
@@ -47,9 +31,10 @@ class HeaderAppComponent extends React.Component {
   };
 
   render() {
-    const { showAddCounter, upSortDirection, sortBy } = this.state;
+    const { upSortDirection, sortBy, setSorter } = this.props;
+    const { showAddCounter } = this.state;
     return (
-      <div className="header-app" style={{ height: "300px" }}>
+      <div className="header-app">
         <div className="sorters">
           <div className="sorter-item">
             <div className="counter">{`Total ${110}`}</div>
@@ -58,7 +43,7 @@ class HeaderAppComponent extends React.Component {
             <Button
               variant={(sortBy === "counter" && "primary") || "outline-primary"}
               name="counter"
-              onClick={this.setSorter.bind(this)}
+              onClick={setSorter.bind(this)}
             >
               {sortBy === "counter" && (
                 <span>
@@ -75,7 +60,7 @@ class HeaderAppComponent extends React.Component {
               <Button
                 variant={(sortBy === "name" && "primary") || "outline-primary"}
                 name="name"
-                onClick={this.setSorter.bind(this)}
+                onClick={setSorter.bind(this)}
               >
                 {sortBy === "name" && (
                   <span>
@@ -108,7 +93,6 @@ class HeaderAppComponent extends React.Component {
             />
           </div>
         )}
-        {/* <div className="counter">{`Total ${110}`}</div> */}
       </div>
     );
   }
