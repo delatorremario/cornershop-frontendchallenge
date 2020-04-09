@@ -16,7 +16,20 @@ let countersList = [
 class MainComponent extends React.Component {
   state = {
     upSortDirection: true,
-    sortBy: "counter"
+    sortBy: "counter",
+    less: 0,
+    greater: 0,
+    countersList: []
+  };
+
+  componentDidMount() {
+    this.setState({ countersList });
+  }
+
+  onChange = e => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
   };
 
   setSorter = e => {
@@ -32,9 +45,32 @@ class MainComponent extends React.Component {
     }
   };
 
+  setFilter = type => e => {
+    let { countersList, less, greater } = this.state;
+    if (type === "less") {
+      countersList = countersList.filter(
+        counter => counter.count < Number(less)
+      );
+    } else {
+      countersList = countersList.filter(counter => counter.count > greater);
+    }
+    this.setState({ countersList });
+  };
+
+  clearFilters = e => {
+    e.preventDefault();
+    this.setState({ less: 0, greater: 0, countersList });
+  };
+
   render() {
-   
-    const { showAddCounter, upSortDirection, sortBy } = this.state;
+    const {
+      showAddCounter,
+      upSortDirection,
+      sortBy,
+      less,
+      greater,
+      countersList
+    } = this.state;
 
     countersList.sort((a, b) => {
       if (sortBy === "counter") {
@@ -55,9 +91,14 @@ class MainComponent extends React.Component {
       <div>
         <HeaderAppComponent
           setSorter={this.setSorter}
+          setFilter={this.setFilter}
           showAddCounter={showAddCounter}
           upSortDirection={upSortDirection}
           sortBy={sortBy}
+          onChange={this.onChange}
+          less={less}
+          greater={greater}
+          clearFilters={this.clearFilters}
         />
         <CountersListComponents countersList={countersList} />
       </div>

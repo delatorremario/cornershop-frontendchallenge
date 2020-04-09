@@ -23,11 +23,29 @@
   background-color: white;
   height: 50px;
   border-bottom: solid black 1px;
-
 }
 
 .sorter-item {
   padding: 5px;
+}
+.filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: space-around;
+  background-color: white;
+  height: 50px;
+  border-bottom: solid black 1px;
+  padding-right: 50px;
+  padding-left: 50px;
+}
+
+.filter-item {
+  padding: 5px;
+}
+
+.filter-item-input{
+  width: 90px;
 }
 
 .counter {
@@ -53,7 +71,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 150px;
 }
 .counter-card {
   text-align: center;
