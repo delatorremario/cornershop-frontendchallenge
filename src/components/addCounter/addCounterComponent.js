@@ -11,11 +11,11 @@ class AddCounterComponent extends React.Component {
   }
 
   render() {
-  
     const { saveCounter, setShowAddCounter } = this.props;
 
     return (
       <Form
+        data-test="counter-form"
         className="counter-form"
         onSubmit={saveCounter({ name: this.state.name }).bind(this)}
       >

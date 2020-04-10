@@ -11,7 +11,7 @@ import {
 
 import { Button, Form } from "react-bootstrap";
 
-import AddCounterComponent from "./addCounterComponent";
+import AddCounterComponent from "./addCounter/addCounterComponent";
 
 class HeaderAppComponent extends React.Component {
   state = {
