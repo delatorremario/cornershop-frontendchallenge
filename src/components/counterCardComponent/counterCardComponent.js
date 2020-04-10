@@ -5,14 +5,14 @@ import { Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-const CounterCardComponent = ({ name, count }) => (
+const CounterCardComponent = ({ title, count }) => (
   <Card
     data-test="counter-card"
     className="counter-card"
     style={{ width: "18rem" }}
   >
     <Card.Body>
-      <Card.Title>{name}</Card.Title>
+      <Card.Title>{title}</Card.Title>
       <Card.Text>{count}</Card.Text>
       <div>
         <button type="button" className="btn btn-info btn-circle">
@@ -33,7 +33,7 @@ const CounterCardComponent = ({ name, count }) => (
 );
 
 CounterCardComponent.propTypes = {
-  name: PropTypes.string,
+  title: PropTypes.string,
   count: PropTypes.number
 };
 

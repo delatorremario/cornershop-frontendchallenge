@@ -78,7 +78,7 @@ class HeaderAppComponent extends React.Component {
                     />{" "}
                   </span>
                 )}
-                Nombre
+                Título
               </Button>
             </div>
           </div>

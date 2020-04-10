@@ -4,13 +4,13 @@ import HeaderAppComponent from "./headerAppComponent/headerAppComponent";
 import CountersListComponents from "./countersListComponent/countersListComponent";
 
 let countersList = [
-  { name: "Contador 1", count: 10 },
-  { name: "Contador 2", count: 2 },
-  { name: "Contador 3", count: 3 },
-  { name: "Contador 4", count: 4 },
-  { name: "Contador 5", count: 5 },
-  { name: "Contador 6", count: 6 },
-  { name: "Contador 7", count: 7 }
+  { title: "Contador 1", count: 10 },
+  { title: "Contador 2", count: 2 },
+  { title: "Contador 3", count: 3 },
+  { title: "Contador 4", count: 4 },
+  { title: "Contador 5", count: 5 },
+  { title: "Contador 6", count: 6 },
+  { title: "Contador 7", count: 7 }
 ];
 
 class MainComponent extends React.Component {
@@ -76,10 +76,10 @@ class MainComponent extends React.Component {
       if (sortBy === "counter") {
         return (upSortDirection && a.count - b.count) || b.count - a.count;
       } else {
-        if (a.name > b.name) {
+        if (a.title > b.title) {
           return (upSortDirection && 1) || -1;
         }
-        if (a.name < b.name) {
+        if (a.title < b.title) {
           return (upSortDirection && -1) || 1;
         }
         // a must be equal to b

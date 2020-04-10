@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 class AddCounterComponent extends React.Component {
   state = {
-    name: ""
+    title: ""
   };
 
   handleChange(e) {
@@ -18,14 +18,14 @@ class AddCounterComponent extends React.Component {
       <Form
         data-test="counter-form"
         className="counter-form"
-        onSubmit={saveCounter({ name: this.state.name }).bind(this)}
+        onSubmit={saveCounter({ title: this.state.title }).bind(this)}
       >
         <Form.Group controlId="formBasicEmail">
-          <Form.Label>Nombre del Nuevo Contador</Form.Label>
+          <Form.Label>Título del Nuevo Contador</Form.Label>
           <Form.Control
             type="text"
-            name="name"
-            value={this.state.name}
+            name="title"
+            value={this.state.title}
             onChange={this.handleChange.bind(this)}
           />
         </Form.Group>
