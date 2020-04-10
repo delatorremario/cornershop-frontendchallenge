@@ -4,7 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const CounterCardComponent = ({ name, count }) => (
-  <Card className="counter-card" style={{ width: "18rem" }}>
+  <Card
+    data-test="counter-card"
+    className="counter-card"
+    style={{ width: "18rem" }}
+  >
     <Card.Body>
       <Card.Title>{name}</Card.Title>
       <Card.Text>{count}</Card.Text>

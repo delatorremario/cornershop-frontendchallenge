@@ -1,7 +1,7 @@
 import React from "react";
 
-import HeaderAppComponent from "./headerAppComponent";
-import CountersListComponents from "./countersListComponent";
+import HeaderAppComponent from "./headerAppComponent/headerAppComponent";
+import CountersListComponents from "./countersListComponent/countersListComponent";
 
 let countersList = [
   { name: "Contador 1", count: 10 },
@@ -88,7 +88,7 @@ class MainComponent extends React.Component {
     });
 
     return (
-      <div>
+      <div data-test="main">
         <HeaderAppComponent
           setSorter={this.setSorter}
           setFilter={this.setFilter}

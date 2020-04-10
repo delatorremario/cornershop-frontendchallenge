@@ -11,7 +11,7 @@ import {
 
 import { Button, Form } from "react-bootstrap";
 
-import AddCounterComponent from "./addCounter/addCounterComponent";
+import AddCounterComponent from "../addCounter/addCounterComponent";
 
 class HeaderAppComponent extends React.Component {
   state = {
@@ -23,7 +23,6 @@ class HeaderAppComponent extends React.Component {
       showAddCounter: !prevState.showAddCounter
     }));
   };
-
 
   saveCounter = ({ name }) => e => {
     e.preventDefault();
@@ -46,7 +45,7 @@ class HeaderAppComponent extends React.Component {
     } = this.props;
     const { showAddCounter } = this.state;
     return (
-      <div className="header-app">
+      <div className="header-app" data-test="header-app">
         <div className="sorters">
           <div className="sorter-item">
             <Button
