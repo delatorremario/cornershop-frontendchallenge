@@ -1,5 +1,6 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 class AddCounterComponent extends React.Component {
   state = {
@@ -41,5 +42,10 @@ class AddCounterComponent extends React.Component {
     );
   }
 }
+
+AddCounterComponent.propTypes = {
+  saveCounter: PropTypes.func,
+  setShowAddCounter: PropTypes.func
+};
 
 export default AddCounterComponent;

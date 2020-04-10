@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import { Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -29,5 +31,10 @@ const CounterCardComponent = ({ name, count }) => (
     </Card.Body>
   </Card>
 );
+
+CounterCardComponent.propTypes = {
+  name: PropTypes.string,
+  count: PropTypes.number
+};
 
 export default CounterCardComponent;

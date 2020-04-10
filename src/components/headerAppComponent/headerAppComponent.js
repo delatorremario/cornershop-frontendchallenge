@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -167,5 +168,16 @@ class HeaderAppComponent extends React.Component {
     );
   }
 }
+
+HeaderAppComponent.propTypes = {
+  upSortDirection: PropTypes.bool,
+  sortBy: PropTypes.string,
+  setSorter: PropTypes.func,
+  setFilter: PropTypes.func,
+  onChange: PropTypes.func,
+  less: PropTypes.number,
+  greater: PropTypes.number,
+  clearFilters: PropTypes.func
+};
 
 export default HeaderAppComponent;
