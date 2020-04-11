@@ -1,15 +1,33 @@
-import React from "react";
+import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
+import { connect } from "react-redux";
+import { fetchCounters } from "./actions";
+
 import MainComponent from "./components/mainComponent";
 
-function App() {
-  return (
-    <div className="App">
-      <MainComponent />
-    </div>
-  );
+class App extends Component {
+  componentDidMount() {
+    this.props.fetchCounters();
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <MainComponent />
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    counters: state.counters
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { fetchCounters }
+)(App);

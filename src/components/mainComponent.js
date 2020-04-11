@@ -1,30 +1,16 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import HeaderAppComponent from "./headerAppComponent/headerAppComponent";
 import CountersListComponents from "./countersListComponent/countersListComponent";
-
-let countersList = [
-  { title: "Contador 1", count: 10 },
-  { title: "Contador 2", count: 2 },
-  { title: "Contador 3", count: 3 },
-  { title: "Contador 4", count: 4 },
-  { title: "Contador 5", count: 5 },
-  { title: "Contador 6", count: 6 },
-  { title: "Contador 7", count: 7 }
-];
 
 class MainComponent extends React.Component {
   state = {
     upSortDirection: true,
     sortBy: "counter",
     less: 0,
-    greater: 0,
-    countersList: []
+    greater: 0
   };
-
-  componentDidMount() {
-    this.setState({ countersList });
-  }
 
   onChange = e => {
     e.preventDefault();
@@ -46,20 +32,20 @@ class MainComponent extends React.Component {
   };
 
   setFilter = type => e => {
-    let { countersList, less, greater } = this.state;
-    if (type === "less") {
-      countersList = countersList.filter(
-        counter => counter.count < Number(less)
-      );
-    } else {
-      countersList = countersList.filter(counter => counter.count > greater);
-    }
-    this.setState({ countersList });
+    // let { countersList, less, greater } = this.state;
+    // if (type === "less") {
+    //   countersList = countersList.filter(
+    //     counter => counter.count < Number(less)
+    //   );
+    // } else {
+    //   countersList = countersList.filter(counter => counter.count > greater);
+    // }
+    // this.setState({ countersList });
   };
 
   clearFilters = e => {
-    e.preventDefault();
-    this.setState({ less: 0, greater: 0, countersList });
+    // e.preventDefault();
+    // this.setState({ less: 0, greater: 0, countersList });
   };
 
   render() {
@@ -68,24 +54,27 @@ class MainComponent extends React.Component {
       upSortDirection,
       sortBy,
       less,
-      greater,
-      countersList
+      greater
     } = this.state;
 
-    countersList.sort((a, b) => {
-      if (sortBy === "counter") {
-        return (upSortDirection && a.count - b.count) || b.count - a.count;
-      } else {
-        if (a.title > b.title) {
-          return (upSortDirection && 1) || -1;
+    let { countersList } = this.props;
+    console.log("MainComponent -> render -> countersList", countersList);
+
+    countersList &&
+      countersList.sort((a, b) => {
+        if (sortBy === "counter") {
+          return (upSortDirection && a.count - b.count) || b.count - a.count;
+        } else {
+          if (a.title > b.title) {
+            return (upSortDirection && 1) || -1;
+          }
+          if (a.title < b.title) {
+            return (upSortDirection && -1) || 1;
+          }
+          // a must be equal to b
+          return 0;
         }
-        if (a.title < b.title) {
-          return (upSortDirection && -1) || 1;
-        }
-        // a must be equal to b
-        return 0;
-      }
-    });
+      });
 
     return (
       <div data-test="main">
@@ -100,10 +89,19 @@ class MainComponent extends React.Component {
           greater={greater}
           clearFilters={this.clearFilters}
         />
-        <CountersListComponents countersList={countersList} />
+        {countersList && <CountersListComponents countersList={countersList} />}
       </div>
     );
   }
 }
+
+MainComponent.propTypes = {
+  countersList: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      count: PropTypes.number
+    })
+  )
+};
 
 export default MainComponent;
