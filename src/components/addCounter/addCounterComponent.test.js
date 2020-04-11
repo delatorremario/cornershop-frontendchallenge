@@ -7,10 +7,24 @@ import AddCounterComponent from "./addCounterComponent";
 const setUp = (props = {}) => shallow(<AddCounterComponent {...props} />);
 
 describe("add counter component", () => {
-  let component;
-  beforeEach(() => {
-    const props = { saveCounter: () => () => {} };
-    component = setUp(props);
+  describe("Renders", () => {
+    let component;
+    let mockFunc;
+    beforeEach(() => {
+      mockFunc = jest.fn(() => ({ bind: jest.fn() }));
+      const props = { saveCounter: mockFunc };
+      component = setUp(props);
+    });
+    it("Should render form", () => {
+      const form = findByTestAttr(component, "counter-form");
+      expect(form.length).toBe(1);
+    });
+    it("Should emit callback on click event", () => {
+      const button = findByTestAttr(component, "button-submit");
+      button.simulate("click");
+      const callback = mockFunc.mock.calls.length;
+      expect(callback).toBe(1);
+    });
   });
 
   describe("Cheking PropTypes", () => {
@@ -21,10 +35,5 @@ describe("add counter component", () => {
       const propsErr = checkProps(AddCounterComponent, expectedProps);
       expect(propsErr).toBeUndefined();
     });
-  });
-
-  it("Should render form", () => {
-    const form = findByTestAttr(component, "counter-form");
-    expect(form.length).toBe(1);
   });
 });

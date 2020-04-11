@@ -31,7 +31,7 @@ class AddCounterComponent extends React.Component {
         </Form.Group>
 
         <div>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" data-test="button-submit" >
             Agregar
           </Button>{" "}
           <Button variant="secondary" onClick={setShowAddCounter}>
