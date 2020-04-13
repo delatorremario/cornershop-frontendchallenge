@@ -1,55 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addCounter } from "../../actions";
+
 import { Form, Button } from "react-bootstrap";
-import PropTypes from "prop-types";
-class AddCounterComponent extends React.Component {
-  state = {
-    title: ""
-  };
 
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
+const AddCounterComponent = ({ setShowAddCounter }) => {
+  const dispatch = useDispatch();
 
-  submitForm = e => {
-    e.preventDefault();
-    this.props.saveCounter({ ...this.state });
-  };
+  const [title, setTitle] = useState("");
 
-  render() {
-    const { setShowAddCounter } = this.props;
+  return (
+    <Form data-test="counter-form" className="counter-form">
+      <Form.Group controlId="formBasicEmail">
+        <Form.Label>Título del Nuevo Contador</Form.Label>
+        <Form.Control
+          type="text"
+          name="title"
+          value={title}
+          onChange={e => setTitle(e.target.value)}
+        />
+      </Form.Group>
 
-    return (
-      <Form
-        data-test="counter-form"
-        className="counter-form"
-        onSubmit={this.submitForm.bind(this)}
-      >
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Título del Nuevo Contador</Form.Label>
-          <Form.Control
-            type="text"
-            name="title"
-            value={this.state.title}
-            onChange={this.handleChange.bind(this)}
-          />
-        </Form.Group>
-
-        <div>
-          <Button variant="primary" type="submit" data-test="button-submit">
-            Agregar
-          </Button>{" "}
-          <Button variant="secondary" onClick={setShowAddCounter}>
-            Cancelar
-          </Button>
-        </div>
-      </Form>
-    );
-  }
-}
-
-AddCounterComponent.propTypes = {
-  saveCounter: PropTypes.func,
-  setShowAddCounter: PropTypes.func
+      <div>
+        <Button
+          variant="primary"
+          data-test="button-submit"
+          onClick={() => dispatch(addCounter({ title }))}
+        >
+          Agregar
+        </Button>{" "}
+        <Button variant="secondary" onClick={() => setShowAddCounter(false)}>
+          Cancelar
+        </Button>
+      </div>
+    </Form>
+  );
 };
 
 export default AddCounterComponent;

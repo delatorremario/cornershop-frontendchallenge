@@ -3,7 +3,12 @@ import { types } from "../../actions/types";
 const initialState = {
   loading: false,
   counters: [],
-  error: ""
+  error: "",
+  upSortDirection: true,
+  sortBy: "counter",
+  less: 0,
+  greater: 0,
+  showAddCounter: false
 };
 
 export default (state = initialState, action) => {
@@ -16,12 +21,14 @@ export default (state = initialState, action) => {
       };
     case types.FETCH_COUNTERS_SUCCESS:
       return {
+        ...state,
         loading: false,
         error: "",
         counters: action.payload
       };
     case types.FETCH_COUNTERS_FAILURE:
       return {
+        ...state,
         counters: [],
         loading: false,
         error: action.payload
@@ -29,6 +36,7 @@ export default (state = initialState, action) => {
     case types.ADD_COUNTER:
       state.counters.push(action.payload);
       return {
+        ...state,
         counters: state.counters,
         loading: false,
         error: ""
@@ -40,6 +48,7 @@ export default (state = initialState, action) => {
         else return counter;
       });
       return {
+        ...state,
         counters: state.counters,
         loading: false,
         error: ""
@@ -52,6 +61,7 @@ export default (state = initialState, action) => {
         1
       );
       return {
+        ...state,
         counters: state.counters,
         loading: false,
         error: ""
