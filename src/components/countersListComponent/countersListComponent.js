@@ -3,11 +3,14 @@ import { useSelector } from "react-redux";
 import { Badge } from "react-bootstrap";
 
 import CounterCardComponent from "../counterCardComponent/counterCardComponent";
+import LoadingComponent from "../loadingComponent/loadingComponent";
 
 const CountersListComponent = () => {
   const counters = useSelector(state => state.counters);
   const sortBy = useSelector(state => state.sortBy);
   const upSortDirection = useSelector(state => state.upSortDirection);
+  const loading = useSelector(state => state.loading);
+
   counters &&
     counters.sort((a, b) => {
       if (sortBy === "counter") {
@@ -23,12 +26,20 @@ const CountersListComponent = () => {
         return 0;
       }
     });
+
+  var sumCounters = counters.reduce((total, currentValue) => {
+    return total + currentValue.count;
+  }, 0);
+
   return (
     <div data-test="counter-list">
       <div className="counters-counter">
-        <h4>
-          Suma Total de Contadores <Badge variant="secondary">{200}</Badge>
-        </h4>
+        {(loading && <LoadingComponent />) || (
+          <h4>
+            Suma Total de Contadores{" "}
+            <Badge variant="secondary">{sumCounters}</Badge>
+          </h4>
+        )}
       </div>
       <div className="counters-list">
         {counters &&

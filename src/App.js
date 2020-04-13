@@ -7,20 +7,18 @@ import MainComponent from "./components/mainComponent";
 import ErrorComponent from "./components/errorComponent/errorComponent";
 import LoadingComponent from "./components/loadingComponent/loadingComponent";
 
-const App = ({ error, loading }) => {
+const App = ({ error }) => {
   return (
     <div className="App" data-test="app-component">
       {error && <ErrorComponent message={error} />}
-      {loading && <LoadingComponent />}
-      {!error && !loading && <MainComponent />}
+      {!error && <MainComponent />}
     </div>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    error: state.error,
-    loading: state.loading
+    error: state.error
   };
 };
 

@@ -17,9 +17,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loading: true,
-        error: "",
-        less: 0,
-        greater: 0
+        error: ""
       };
     case types.FETCH_COUNTERS_SUCCESS:
       return {
@@ -97,17 +95,18 @@ export default (state = initialState, action) => {
         greater: action.payload
       };
     case types.SET_FILTER:
-      let { counters, less, greater } = state;
+      let { less, greater } = state;
+      let counters = action.data;
       if (action.payload === "less") {
         counters = counters.filter(counter => counter.count < Number(less));
       } else {
         counters = counters.filter(counter => counter.count > Number(greater));
       }
 
-      console.log("counters", counters);
       return {
         ...state,
-        counters
+        counters,
+        loading: false
       };
     case types.CLEAR_FILTERS:
       return {

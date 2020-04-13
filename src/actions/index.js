@@ -86,7 +86,24 @@ export const setGreater = value => ({
   type: types.SET_LESS,
   payload: value
 });
-export const setFilter = value => ({
-  type: types.SET_FILTER,
-  payload: value
-});
+
+export const setFilter = value => async dispatch => {
+  dispatch({
+    type: types.FETCH_COUNTERS_REQUEST
+  });
+  await axios
+    .get(`${url_base}/api/v1/counters`)
+    .then(res => {
+      dispatch({
+        type: types.SET_FILTER,
+        payload: value,
+        data: res.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: types.FETCH_COUNTERS_FAILURE,
+        payload: err.message
+      });
+    });
+};
