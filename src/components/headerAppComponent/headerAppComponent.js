@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setShowAddCounterForm } from "../../actions";
+import { setShowAddCounterForm, setSortBy } from "../../actions";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -17,6 +17,8 @@ import AddCounterComponent from "../addCounter/addCounterComponent";
 
 const HeaderAppComponent = () => {
   const showAddCounter = useSelector(state => state.showAddCounter);
+  const sortBy = useSelector(state => state.sortBy);
+  const upSortDirection = useSelector(state => state.upSortDirection);
   const dispatch = useDispatch();
   // state = {
   //   showAddCounter: false
@@ -48,12 +50,12 @@ const HeaderAppComponent = () => {
   //   const { showAddCounter } = this.state;
   return (
     <div className="header-app" data-test="header-app">
-      {/* <div className="sorters">
+      <div className="sorters">
         <div className="sorter-item">
           <Button
             variant={(sortBy === "counter" && "primary") || "outline-primary"}
             name="counter"
-            onClick={setSorter.bind(this)}
+            onClick={e => dispatch(setSortBy(e.target.name))}
           >
             {sortBy === "counter" && (
               <span>
@@ -65,12 +67,13 @@ const HeaderAppComponent = () => {
             Contador
           </Button>
         </div>
+
         <div className="sorter-item">
           <div className="sorter-item">
             <Button
               variant={(sortBy === "name" && "primary") || "outline-primary"}
               name="name"
-              onClick={setSorter.bind(this)}
+              onClick={e => dispatch(setSortBy(e.target.name))}
             >
               {sortBy === "name" && (
                 <span>
@@ -82,21 +85,20 @@ const HeaderAppComponent = () => {
               Título
             </Button>
           </div>
-              </div>*/}
-      <div className="sorter-item">
-        {!showAddCounter && (
-          <button
-            type="button"
-            className="btn btn-success btn-circle"
-            onClick={e => dispatch(setShowAddCounterForm(true))}
-          >
-            <FontAwesomeIcon icon={faPlus} />
-          </button>
-        )}
+        </div>
+        <div className="sorter-item">
+          {!showAddCounter && (
+            <button
+              type="button"
+              className="btn btn-success btn-circle"
+              onClick={e => dispatch(setShowAddCounterForm(true))}
+            >
+              <FontAwesomeIcon icon={faPlus} />
+            </button>
+          )}
+        </div>
       </div>
-      {/*}
-      </div>
-      <div className="filters">
+      {/* <div className="filters">
         <div className="filter-item">
           <div>Menor que </div>
         </div>
@@ -157,7 +159,8 @@ const HeaderAppComponent = () => {
         <div className="sorter-item">
           <div className="counter">{`Total ${110}`}</div>
         </div>
-      </div> */}
+      </div>{" "}
+       */}
       {showAddCounter && (
         <div className="addcounter-form">
           <AddCounterComponent />

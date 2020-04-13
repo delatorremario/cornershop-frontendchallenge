@@ -74,3 +74,7 @@ export const setShowAddCounterForm = value => ({
   type: types.SET_SHOW_ADD_COUNTER_FORM,
   payload: value
 });
+export const setSortBy = value => ({
+  type: types.SET_SORT_BY,
+  payload: value
+});

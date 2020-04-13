@@ -69,6 +69,22 @@ export default (state = initialState, action) => {
         ...state,
         showAddCounter: action.payload
       };
+    case types.SET_SORT_BY:
+      let sortBy = action.payload;
+      let upSortDirection;
+
+      if (state.sortBy !== action.payload) {
+        sortBy = action.payload;
+        upSortDirection = true;
+      } else {
+        upSortDirection = !state.upSortDirection;
+      }
+
+      return {
+        ...state,
+        sortBy,
+        upSortDirection
+      };
     default:
       return state;
   }
