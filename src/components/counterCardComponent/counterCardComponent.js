@@ -54,6 +54,7 @@ const CounterCardComponent = ({
 };
 
 CounterCardComponent.propTypes = {
+  id: PropTypes.string,
   title: PropTypes.string,
   count: PropTypes.number
 };
