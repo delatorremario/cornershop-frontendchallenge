@@ -1,11 +1,9 @@
 import React from "react";
-import { Alert, Jumbotron } from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
 
-const LoadingComponent = ( ) => (
-  <Jumbotron>
-    <Alert data-test="loading" className="info">
-      <p>Buscando listado de Contadores ...</p>
-    </Alert>
-  </Jumbotron>
+const LoadingComponent = () => (
+  <Spinner data-test="loading" animation="border" role="status">
+    <span className="sr-only">Buscando listado de Contadores ...</span>
+  </Spinner>
 );
 export default LoadingComponent;

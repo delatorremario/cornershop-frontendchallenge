@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
+import { Badge } from "react-bootstrap";
 
 import CounterCardComponent from "../counterCardComponent/counterCardComponent";
 
@@ -23,11 +24,18 @@ const CountersListComponent = () => {
       }
     });
   return (
-    <div data-test="counter-list" className="counters-list">
-      {counters &&
-        counters.map((counter, index) => (
-          <CounterCardComponent {...counter} key={index} />
-        ))}
+    <div data-test="counter-list">
+      <div className="counters-counter">
+        <h4>
+          Suma Total de Contadores <Badge variant="secondary">{200}</Badge>
+        </h4>
+      </div>
+      <div className="counters-list">
+        {counters &&
+          counters.map((counter, index) => (
+            <CounterCardComponent {...counter} key={index} />
+          ))}
+      </div>
     </div>
   );
 };

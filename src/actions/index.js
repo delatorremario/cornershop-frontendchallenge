@@ -78,3 +78,15 @@ export const setSortBy = value => ({
   type: types.SET_SORT_BY,
   payload: value
 });
+export const setLess = value => ({
+  type: types.SET_LESS,
+  payload: value
+});
+export const setGreater = value => ({
+  type: types.SET_LESS,
+  payload: value
+});
+export const setFilter = value => ({
+  type: types.SET_FILTER,
+  payload: value
+});

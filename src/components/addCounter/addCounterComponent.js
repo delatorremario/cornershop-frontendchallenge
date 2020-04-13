@@ -10,7 +10,14 @@ const AddCounterComponent = () => {
   const [title, setTitle] = useState("");
 
   return (
-    <Form data-test="counter-form" className="counter-form">
+    <Form
+      data-test="counter-form"
+      className="counter-form"
+      onSubmit={e => {
+        e.preventDefault();
+        dispatch(addCounter({ title }));
+      }}
+    >
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Título del Nuevo Contador</Form.Label>
         <Form.Control
@@ -25,7 +32,8 @@ const AddCounterComponent = () => {
         <Button
           variant="primary"
           data-test="button-submit"
-          onClick={() => dispatch(addCounter({ title }))}
+          // onClick={() => dispatch(addCounter({ title }))}
+          type="submit"
         >
           Agregar
         </Button>{" "}

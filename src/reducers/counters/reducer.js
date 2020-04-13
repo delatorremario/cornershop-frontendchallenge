@@ -12,13 +12,14 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  let counters = [];
   switch (action.type) {
     case types.FETCH_COUNTERS_REQUEST:
       return {
         ...state,
         loading: true,
-        error: ""
+        error: "",
+        less: 0,
+        greater: 0
       };
     case types.FETCH_COUNTERS_SUCCESS:
       return {
@@ -56,7 +57,7 @@ export default (state = initialState, action) => {
       };
     case types.DELETE_COUNTER:
       const arrayOfObjects = state.counters.filter(
-        obj => obj.id != action.payload
+        obj => obj.id !== action.payload
       );
       return {
         ...state,
@@ -85,6 +86,36 @@ export default (state = initialState, action) => {
         sortBy,
         upSortDirection
       };
+    case types.SET_LESS:
+      return {
+        ...state,
+        less: action.payload
+      };
+    case types.SET_GREATER:
+      return {
+        ...state,
+        greater: action.payload
+      };
+    case types.SET_FILTER:
+      let { counters, less, greater } = state;
+      if (action.payload === "less") {
+        counters = counters.filter(counter => counter.count < Number(less));
+      } else {
+        counters = counters.filter(counter => counter.count > Number(greater));
+      }
+
+      console.log("counters", counters);
+      return {
+        ...state,
+        counters
+      };
+    case types.CLEAR_FILTERS:
+      return {
+        ...state,
+        less: 0,
+        greater: 0
+      };
+
     default:
       return state;
   }

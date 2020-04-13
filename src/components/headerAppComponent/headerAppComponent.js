@@ -1,6 +1,13 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setShowAddCounterForm, setSortBy } from "../../actions";
+import {
+  setShowAddCounterForm,
+  setSortBy,
+  setLess,
+  setGreater,
+  setFilter,
+  fetchCounters
+} from "../../actions";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -19,6 +26,9 @@ const HeaderAppComponent = () => {
   const showAddCounter = useSelector(state => state.showAddCounter);
   const sortBy = useSelector(state => state.sortBy);
   const upSortDirection = useSelector(state => state.upSortDirection);
+  const less = useSelector(state => state.less);
+  const greater = useSelector(state => state.greater);
+
   const dispatch = useDispatch();
   // state = {
   //   showAddCounter: false
@@ -98,7 +108,7 @@ const HeaderAppComponent = () => {
           )}
         </div>
       </div>
-      {/* <div className="filters">
+      <div className="filters">
         <div className="filter-item">
           <div>Menor que </div>
         </div>
@@ -109,7 +119,7 @@ const HeaderAppComponent = () => {
               name="less"
               value={less}
               step={1}
-              onChange={onChange.bind(this)}
+              onChange={e => dispatch(setLess(e.target.value))}
             />
           </div>
         </div>
@@ -117,7 +127,7 @@ const HeaderAppComponent = () => {
           <button
             type="button"
             className="btn btn-success btn-circle"
-            onClick={setFilter("less")}
+            onClick={e => dispatch(setFilter("less"))}
           >
             <FontAwesomeIcon icon={faFilter} />
           </button>
@@ -132,7 +142,7 @@ const HeaderAppComponent = () => {
               name="greater"
               value={greater}
               step={1}
-              onChange={onChange.bind(this)}
+              onChange={e => dispatch(setGreater(e.target.value))}
             />
           </div>
         </div>
@@ -140,7 +150,7 @@ const HeaderAppComponent = () => {
           <button
             type="button"
             className="btn btn-success btn-circle"
-            onClick={setFilter("greater")}
+            onClick={() => dispatch(setFilter("greater"))}
           >
             <FontAwesomeIcon icon={faFilter} />
           </button>
@@ -149,18 +159,13 @@ const HeaderAppComponent = () => {
           <button
             type="button"
             className="btn btn-primary btn-circle"
-            onClick={clearFilters.bind(this)}
+            onClick={() => dispatch(fetchCounters())}
           >
             <FontAwesomeIcon icon={faTimes} />
           </button>
         </div>
       </div>
-      <div className="sorters">
-        <div className="sorter-item">
-          <div className="counter">{`Total ${110}`}</div>
-        </div>
-      </div>{" "}
-       */}
+
       {showAddCounter && (
         <div className="addcounter-form">
           <AddCounterComponent />

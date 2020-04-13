@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -6,8 +6,6 @@ import { connect } from "react-redux";
 import MainComponent from "./components/mainComponent";
 import ErrorComponent from "./components/errorComponent/errorComponent";
 import LoadingComponent from "./components/loadingComponent/loadingComponent";
-
-import { addCounter, incCounter, decCounter, deleteCounter } from "./actions";
 
 const App = ({ error, loading }) => {
   return (
@@ -25,13 +23,5 @@ const mapStateToProps = state => {
     loading: state.loading
   };
 };
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     addCounter: counter => dispatch(addCounter(counter))
-//   };
-// };
 
-export default connect(
-  mapStateToProps
-  // mapDispatchToProps
-)(App);
+export default connect(mapStateToProps)(App);
