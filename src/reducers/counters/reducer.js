@@ -55,15 +55,12 @@ export default (state = initialState, action) => {
         error: ""
       };
     case types.DELETE_COUNTER:
-      state.counters.splice(
-        state.counters.findIndex(i => {
-          return i.id === action.payload;
-        }),
-        1
+      const arrayOfObjects = state.counters.filter(
+        obj => obj.id != action.payload
       );
       return {
         ...state,
-        counters: state.counters,
+        counters: arrayOfObjects,
         loading: false,
         error: ""
       };

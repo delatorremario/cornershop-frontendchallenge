@@ -5,7 +5,6 @@ import CounterCardComponent from "../counterCardComponent/counterCardComponent";
 
 const CountersListComponent = ({ sortBy, upSortDirection }) => {
   const counters = useSelector(state => state.counters);
-  console.log("CountersListComponent -> counters", counters)
   // counters &&
   //   counters.sort((a, b) => {
   //     if (sortBy === "counter") {

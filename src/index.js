@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import { store } from "./createStore";
 import { fetchCounters } from "./actions";
 
-// store.dispatch(fetchCounters());
+store.dispatch(fetchCounters());
 
 ReactDOM.render(
   <Provider store={store}>
