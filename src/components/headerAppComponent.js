@@ -30,34 +30,7 @@ const HeaderAppComponent = () => {
   const greater = useSelector(state => state.greater);
 
   const dispatch = useDispatch();
-  // state = {
-  //   showAddCounter: false
-  // };
-  // setShowAddCounter = e => {
-  //   this.setState(prevState => ({
-  //     showAddCounter: !prevState.showAddCounter
-  //   }));
-  // };
 
-  // saveCounter = ({ title }) => {
-  //   this.props.addCounter({ title });
-  //   this.setState({
-  //     showAddCounter: false
-  //   });
-  // };
-
-  // render() {
-  //   const {
-  //     setSorter,
-  //     setFilter,
-  //     upSortDirection,
-  //     sortBy,
-  //     onChange,
-  //     less,
-  //     greater,
-  //     clearFilters
-  //   } = this.props;
-  //   const { showAddCounter } = this.state;
   return (
     <div className="header-app" data-test="header-app">
       <div className="sorters">
@@ -159,7 +132,9 @@ const HeaderAppComponent = () => {
           <button
             type="button"
             className="btn btn-primary btn-circle"
-            onClick={() => dispatch(fetchCounters())}
+            onClick={() => {
+              dispatch(fetchCounters());
+            }}
           >
             <FontAwesomeIcon icon={faTimes} />
           </button>

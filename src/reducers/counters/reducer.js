@@ -99,14 +99,18 @@ export default (state = initialState, action) => {
       let counters = action.data;
       if (action.payload === "less") {
         counters = counters.filter(counter => counter.count < Number(less));
+        greater = 0;
       } else {
         counters = counters.filter(counter => counter.count > Number(greater));
+        less = 0;
       }
 
       return {
         ...state,
         counters,
-        loading: false
+        loading: false,
+        less,
+        greater
       };
     case types.CLEAR_FILTERS:
       return {

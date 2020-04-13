@@ -83,7 +83,7 @@ export const setLess = value => ({
   payload: value
 });
 export const setGreater = value => ({
-  type: types.SET_LESS,
+  type: types.SET_GREATER,
   payload: value
 });
 
