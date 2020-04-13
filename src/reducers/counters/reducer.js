@@ -12,6 +12,7 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
+  let counters = [];
   switch (action.type) {
     case types.FETCH_COUNTERS_REQUEST:
       return {
@@ -34,10 +35,10 @@ export default (state = initialState, action) => {
         error: action.payload
       };
     case types.ADD_COUNTER:
-      state.counters.push(action.payload);
       return {
         ...state,
-        counters: state.counters,
+        showAddCounter: false,
+        counters: state.counters.concat([action.payload]),
         loading: false,
         error: ""
       };
@@ -65,6 +66,11 @@ export default (state = initialState, action) => {
         counters: state.counters,
         loading: false,
         error: ""
+      };
+    case types.SET_SHOW_ADD_COUNTER_FORM:
+      return {
+        ...state,
+        showAddCounter: action.payload
       };
     default:
       return state;

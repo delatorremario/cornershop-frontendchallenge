@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addCounter } from "../../actions";
+import { addCounter, setShowAddCounterForm } from "../../actions";
 
 import { Form, Button } from "react-bootstrap";
 
-const AddCounterComponent = ({ setShowAddCounter }) => {
+const AddCounterComponent = () => {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState("");
@@ -29,7 +29,10 @@ const AddCounterComponent = ({ setShowAddCounter }) => {
         >
           Agregar
         </Button>{" "}
-        <Button variant="secondary" onClick={() => setShowAddCounter(false)}>
+        <Button
+          variant="secondary"
+          onClick={() => dispatch(setShowAddCounterForm(false))}
+        >
           Cancelar
         </Button>
       </div>

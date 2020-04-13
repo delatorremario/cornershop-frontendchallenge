@@ -69,3 +69,8 @@ export const deleteCounter = counter => async dispatch => {
     })
     .catch(err => console.log(err));
 };
+
+export const setShowAddCounterForm = value => ({
+  type: types.SET_SHOW_ADD_COUNTER_FORM,
+  payload: value
+});
