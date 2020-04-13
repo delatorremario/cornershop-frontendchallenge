@@ -32,7 +32,6 @@ const AddCounterComponent = () => {
         <Button
           variant="primary"
           data-test="button-submit"
-          // onClick={() => dispatch(addCounter({ title }))}
           type="submit"
         >
           Agregar
