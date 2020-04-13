@@ -22,7 +22,7 @@ describe("counters list component", () => {
     });
   });
 
-  it("Should render card counter", () => {
+  it("Should render counters list", () => {
     const form = findByTestAttr(component, "counter-list");
     expect(form.length).toBe(1);
   });

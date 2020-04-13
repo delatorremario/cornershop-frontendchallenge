@@ -1,7 +1,6 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
 import PropTypes from "prop-types";
-
 class AddCounterComponent extends React.Component {
   state = {
     title: ""
@@ -11,14 +10,19 @@ class AddCounterComponent extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  submitForm = e => {
+    e.preventDefault();
+    this.props.saveCounter({ ...this.state });
+  };
+
   render() {
-    const { saveCounter, setShowAddCounter } = this.props;
+    const { setShowAddCounter } = this.props;
 
     return (
       <Form
         data-test="counter-form"
         className="counter-form"
-        onSubmit={saveCounter({ title: this.state.title }).bind(this)}
+        onSubmit={this.submitForm.bind(this)}
       >
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Título del Nuevo Contador</Form.Label>
@@ -31,7 +35,7 @@ class AddCounterComponent extends React.Component {
         </Form.Group>
 
         <div>
-          <Button variant="primary" type="submit" data-test="button-submit" >
+          <Button variant="primary" type="submit" data-test="button-submit">
             Agregar
           </Button>{" "}
           <Button variant="secondary" onClick={setShowAddCounter}>

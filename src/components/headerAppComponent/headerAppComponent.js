@@ -19,15 +19,13 @@ class HeaderAppComponent extends React.Component {
     showAddCounter: false
   };
   setShowAddCounter = e => {
-    e.preventDefault();
     this.setState(prevState => ({
       showAddCounter: !prevState.showAddCounter
     }));
   };
 
-  saveCounter = ({ name }) => e => {
-    e.preventDefault();
-    console.log("HeaderAppComponent -> name", name);
+  saveCounter = ({ title }) => {
+    this.props.addCounter({ title });
     this.setState({
       showAddCounter: false
     });
@@ -35,10 +33,10 @@ class HeaderAppComponent extends React.Component {
 
   render() {
     const {
-      upSortDirection,
-      sortBy,
       setSorter,
       setFilter,
+      upSortDirection,
+      sortBy,
       onChange,
       less,
       greater,
@@ -170,14 +168,14 @@ class HeaderAppComponent extends React.Component {
 }
 
 HeaderAppComponent.propTypes = {
-  upSortDirection: PropTypes.bool,
-  sortBy: PropTypes.string,
   setSorter: PropTypes.func,
   setFilter: PropTypes.func,
+  upSortDirection: PropTypes.bool,
+  sortBy: PropTypes.string,
   onChange: PropTypes.func,
   less: PropTypes.number,
   greater: PropTypes.number,
-  clearFilters: PropTypes.func
+  clearFilters: PropTypes.func,
+  addCounter: PropTypes.func
 };
-
 export default HeaderAppComponent;

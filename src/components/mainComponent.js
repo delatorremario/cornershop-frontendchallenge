@@ -32,76 +32,48 @@ class MainComponent extends React.Component {
   };
 
   setFilter = type => e => {
-    // let { countersList, less, greater } = this.state;
+    // let { counters, less, greater } = this.state;
     // if (type === "less") {
-    //   countersList = countersList.filter(
-    //     counter => counter.count < Number(less)
-    //   );
+    //   counters = counters.filter(counter => counter.count < Number(less));
     // } else {
-    //   countersList = countersList.filter(counter => counter.count > greater);
+    //   counters = counters.filter(counter => counter.count > greater);
     // }
-    // this.setState({ countersList });
+    // this.setState({ counters });
   };
 
   clearFilters = e => {
-    // e.preventDefault();
-    // this.setState({ less: 0, greater: 0, countersList });
+    e.preventDefault();
+    this.setState({ less: 0, greater: 0 });
   };
 
   render() {
     const {
-      showAddCounter,
       upSortDirection,
       sortBy,
       less,
       greater
     } = this.state;
-
-    let { countersList } = this.props;
-    console.log("MainComponent -> render -> countersList", countersList);
-
-    countersList &&
-      countersList.sort((a, b) => {
-        if (sortBy === "counter") {
-          return (upSortDirection && a.count - b.count) || b.count - a.count;
-        } else {
-          if (a.title > b.title) {
-            return (upSortDirection && 1) || -1;
-          }
-          if (a.title < b.title) {
-            return (upSortDirection && -1) || 1;
-          }
-          // a must be equal to b
-          return 0;
-        }
-      });
-
+    const { addCounter } = this.props;
     return (
       <div data-test="main">
         <HeaderAppComponent
           setSorter={this.setSorter}
           setFilter={this.setFilter}
-          showAddCounter={showAddCounter}
           upSortDirection={upSortDirection}
           sortBy={sortBy}
           onChange={this.onChange}
           less={less}
           greater={greater}
           clearFilters={this.clearFilters}
+          addCounter={addCounter}
         />
-        {countersList && <CountersListComponents countersList={countersList} />}
+        <CountersListComponents
+          upSortDirection={upSortDirection}
+          sortBy={sortBy}
+        />
       </div>
     );
   }
 }
-
-MainComponent.propTypes = {
-  countersList: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      count: PropTypes.number
-    })
-  )
-};
 
 export default MainComponent;

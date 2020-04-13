@@ -12,17 +12,6 @@ describe("counter card component", () => {
     component = setUp();
   });
 
-  describe("Cheking PropTypes", () => {
-    it("Should not trow warning", () => {
-      const expectedProps = {
-        name: "Name test",
-        count: 0
-      };
-      const propsErr = checkProps(CounterCardComponent, expectedProps);
-      expect(propsErr).toBeUndefined();
-    });
-  });
-
   it("Should render card counter", () => {
     const form = findByTestAttr(component, "counter-card");
     expect(form.length).toBe(1);

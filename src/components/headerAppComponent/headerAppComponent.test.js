@@ -7,17 +7,6 @@ import HeaderAppComponent from "./headerAppComponent";
 const setUp = (props = {}) => shallow(<HeaderAppComponent {...props} />);
 
 describe("header app component", () => {
-  let component;
-  beforeEach(() => {
-    const props = {
-      setSorter: () => () => {},
-      onChange: () => () => {},
-      setFilter: () => () => {},
-      clearFilters: () => () => {}
-    };
-    component = setUp(props);
-  });
-
   describe("Cheking PropTypes", () => {
     it("Should not trow warning", () => {
       const expectedProps = {
@@ -35,8 +24,28 @@ describe("header app component", () => {
     });
   });
 
-  it("Should render header app", () => {
-    const form = findByTestAttr(component, "header-app");
-    expect(form.length).toBe(1);
+  describe("Render", () => {
+    let component;
+    
+    beforeEach(() => {
+      const props = {
+        setSorter: () => () => {},
+        onChange: () => () => {},
+        setFilter: () => () => {},
+        clearFilters: () => () => {}
+      };
+      component = setUp(props);
+    });
+    it("Should render header app", () => {
+      const form = findByTestAttr(component, "header-app");
+      expect(form.length).toBe(1);
+    });
+
+    it("setShowAddCounter method update state as expected", () => {
+      const classInstance = component.instance();
+      classInstance.setShowAddCounter();
+      const newState = classInstance.state.showAddCounter;
+      expect(newState).toBe(true);
+    });
   });
 });
