@@ -1,7 +1,7 @@
 import React from "react";
 import { Toast } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { fetchCounters } from "../../actions";
+import { fetchCounters } from "../actions";
 
 const ErrorComponent = ({ message }) => {
   const dispatch = useDispatch();

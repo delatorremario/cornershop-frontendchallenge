@@ -2,8 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Badge } from "react-bootstrap";
 
-import CounterCardComponent from "../counterCardComponent/counterCardComponent";
-import LoadingComponent from "../loadingComponent/loadingComponent";
+import CounterCardComponent from "./counterCardComponent";
+import LoadingComponent from "./loadingComponent";
 
 const CountersListComponent = () => {
   const counters = useSelector(state => state.counters);

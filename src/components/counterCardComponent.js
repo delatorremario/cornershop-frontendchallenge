@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { incCounter, decCounter, deleteCounter } from "../../actions";
+import { incCounter, decCounter, deleteCounter } from "../actions";
 
 import { Card } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

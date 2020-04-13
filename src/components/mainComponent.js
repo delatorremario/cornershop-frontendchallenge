@@ -1,7 +1,7 @@
 import React from "react";
 
-import HeaderAppComponent from "./headerAppComponent/headerAppComponent";
-import CountersListComponents from "./countersListComponent/countersListComponent";
+import HeaderAppComponent from "./headerAppComponent";
+import CountersListComponents from "./countersListComponent";
 
 const MainComponent = () => {
   // state = {

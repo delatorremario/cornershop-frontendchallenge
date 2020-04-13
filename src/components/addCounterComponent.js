@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addCounter, setShowAddCounterForm } from "../../actions";
+import { addCounter, setShowAddCounterForm } from "../actions";
 
 import { Form, Button } from "react-bootstrap";
 

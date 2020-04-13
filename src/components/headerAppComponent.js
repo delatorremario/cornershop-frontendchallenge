@@ -7,7 +7,7 @@ import {
   setGreater,
   setFilter,
   fetchCounters
-} from "../../actions";
+} from "../actions";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -20,7 +20,7 @@ import {
 
 import { Button, Form } from "react-bootstrap";
 
-import AddCounterComponent from "../addCounter/addCounterComponent";
+import AddCounterComponent from "./addCounterComponent";
 
 const HeaderAppComponent = () => {
   const showAddCounter = useSelector(state => state.showAddCounter);

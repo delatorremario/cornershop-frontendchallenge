@@ -4,8 +4,8 @@ import "./App.css";
 
 import { connect } from "react-redux";
 import MainComponent from "./components/mainComponent";
-import ErrorComponent from "./components/errorComponent/errorComponent";
-import LoadingComponent from "./components/loadingComponent/loadingComponent";
+import ErrorComponent from "./components/errorComponent";
+import LoadingComponent from "./components/loadingComponent";
 
 const App = ({ error }) => {
   return (

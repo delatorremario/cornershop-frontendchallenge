@@ -5,7 +5,12 @@ import countersReducer from "./reducer";
 const initialState = {
   loading: false,
   counters: [],
-  error: ""
+  error: "",
+  upSortDirection: true,
+  sortBy: "counter",
+  less: 0,
+  greater: 0,
+  showAddCounter: false
 };
 
 describe("Counters Reducer", () => {
@@ -21,14 +26,5 @@ describe("Counters Reducer", () => {
       payload: counters
     });
     expect(newState).toEqual({ ...initialState, counters });
-  });
-
-  it("Add Counter Reducer", () => {
-    const counter = { id: "k8xffn60", title: "My Counter", count: 0 };
-    const newState = countersReducer(undefined, {
-      type: types.ADD_COUNTER,
-      payload: counter
-    });
-    expect(newState).toEqual({ ...initialState, counters: [counter] });
   });
 });
